@@ -1,0 +1,1 @@
+select * from (select col1, col2 from schema1.data1) as tmp1;

@@ -1,0 +1,1 @@
+insert into schema2.data2 select d1.* from schema1.data1 d1;
