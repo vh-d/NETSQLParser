@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
-    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
-        <HintPath>/home/venca/DEVEL/SQL/sqlpackage-linux-x64/Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom" Version="150.4897.1" />
   </ItemGroup>
   
 </Project>
