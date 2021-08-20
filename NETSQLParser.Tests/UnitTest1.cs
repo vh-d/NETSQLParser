@@ -10,20 +10,23 @@ namespace NETSQLParser.Tests
         [Fact]
         public void Parse_Test1()
         {
-            var res = NETSQLParser.Parse("../../../tests_in/test1.sql");
+            NETSQLParser.LoadFile("../../../tests_in/test1.sql");
+            var res = NETSQLParser.Parse();
             Assert.True(res);
         }
 
         [Fact]
         public void Parse_Test2()
         {
-            var res = NETSQLParser.Parse("../../../tests_in/test2.sql");
+            NETSQLParser.LoadFile("../../../tests_in/test2.sql");
+            var res = NETSQLParser.Parse();
             Assert.False(res);
         }        
         [Fact]
         public void Parse_Query1()
         {
-            var success = NETSQLParser.Parse("../../../tests_in/test_select_query1.sql");
+            NETSQLParser.LoadFile("../../../tests_in/test_select_query1.sql");
+            var success = NETSQLParser.Parse();
             Assert.True(success);
 
             var result = NETSQLParser.SQL2XML();
@@ -38,7 +41,8 @@ namespace NETSQLParser.Tests
         [Fact]
         public void Parse_Query2()
         {
-            var success = NETSQLParser.Parse("../../../tests_in/test_select_query2.sql");
+            NETSQLParser.LoadFile("../../../tests_in/test_select_query2.sql");
+            var success = NETSQLParser.Parse();
             Assert.True(success);
 
             var result = NETSQLParser.SQL2XML();
@@ -50,10 +54,23 @@ namespace NETSQLParser.Tests
                 wr.Flush();
             }
         }
+
+        [Fact]
+        public void Parse_QueryText1()
+        {
+            NETSQLParser.LoadText("select * from data");
+            var success = NETSQLParser.Parse();
+            Assert.True(success);
+
+            var result = NETSQLParser.SQL2XML();
+            Assert.True(result.Length > 0);
+        }
+
         [Fact]
          public void Parse_Query3()
         {
-            var success = NETSQLParser.Parse("../../../tests_in/test_insert_query1.sql");
+            NETSQLParser.LoadFile("../../../tests_in/test_insert_query1.sql");
+            var success = NETSQLParser.Parse();
             Assert.True(success);
 
             var result = NETSQLParser.SQL2XML();

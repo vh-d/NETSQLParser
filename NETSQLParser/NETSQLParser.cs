@@ -12,14 +12,23 @@ namespace NETSQLParser
     {
         static StringBuilder result; // resulting XML string
         static TSqlFragment ast; // SQL abstract syntax tree
-
-        public static bool Parse(string sqlFile)
+        static TextReader sqltext;
+        
+        public static void LoadFile(string sqlFile) 
         {
-            var rdr = new StreamReader(sqlFile);
+            sqltext = new StreamReader(sqlFile);
+        }
 
+        public static void LoadText(string text) 
+        {
+            sqltext = new StringReader(text);
+        }
+       
+        public static bool Parse()
+        {
             IList<ParseError> errors = null;
             var parser = new TSql150Parser(true, SqlEngineType.All);
-            ast = parser.Parse(rdr, out errors);
+            ast = parser.Parse(sqltext, out errors);
 
             if (errors.Count > 0)
             {
