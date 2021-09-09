@@ -60,8 +60,8 @@ namespace NETSQLParser
 
             foreach (PropertyInfo property in properties)
             {
-                if (property.PropertyType.BaseType != null && (property.PropertyType.BaseType.Name == "ValueType" || property.PropertyType.BaseType.Name == "Enum"))
-                {
+                if (property.PropertyType.BaseType != null && (property.PropertyType.BaseType.Name == "ValueType" || property.PropertyType.BaseType.Name == "Enum") && property.GetValue(fragment, null) != null)
+                {                   
                     res.Append(" " + property.Name + " = '" + property.GetValue(fragment, null).ToString() + "'");
                 }
             }
