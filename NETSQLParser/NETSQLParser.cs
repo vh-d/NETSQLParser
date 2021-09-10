@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using System.IO;
 using System.Reflection;
+using System.Security;
 
 namespace NETSQLParser
 {
@@ -93,7 +94,7 @@ namespace NETSQLParser
                 // text values
                 if (property.PropertyType.Name == "String")
                 {
-                    result.Append(property.GetValue(fragment, null));
+                    result.Append(SecurityElement.Escape(property.GetValue(fragment, null).ToString()));
                     continue;
                 }
 
